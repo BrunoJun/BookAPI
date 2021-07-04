@@ -1,6 +1,8 @@
 package com.digitalinnovationone.projetoapilivros.controller;
 
-import com.digitalinnovationone.projetoapilivros.entity.Person;
+import javax.validation.Valid;
+
+import com.digitalinnovationone.projetoapilivros.dto.request.PersonDTO;
 import com.digitalinnovationone.projetoapilivros.service.PersonService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +27,8 @@ public class BookController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public String createPerson(@RequestBody Person person){
+    public String createPerson(@RequestBody @Valid PersonDTO personDTO){
 
-        return personService.createPerson(person);
+        return personService.createPerson(personDTO);
     }
 }

@@ -1,5 +1,6 @@
 package com.digitalinnovationone.projetoapilivros.service;
 
+import com.digitalinnovationone.projetoapilivros.dto.request.PersonDTO;
 import com.digitalinnovationone.projetoapilivros.entity.Person;
 import com.digitalinnovationone.projetoapilivros.repository.PersonRepository;
 
@@ -17,9 +18,15 @@ public class PersonService {
         this.personRepository = personRepository;
     }
 
-    public String createPerson(Person person){
+    public String createPerson(PersonDTO personDTO){
 
-        personRepository.save(person);
+        Person personToSave = Person.builder()
+        .firstName(personDTO.getFirstName())
+        .lastName(personDTO.getLastName())
+        .cpf(personDTO.getCpf())
+        .build();
+
+        // personRepository.save(personDTO);
         return "Pessoa adicionada!";
     }
 }
