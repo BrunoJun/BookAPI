@@ -29,5 +29,5 @@ public class Book {
     private String typeBook;
 
     @Column(nullable = false)
-    private int numberPages;
+    private Integer numberPages;
 }
