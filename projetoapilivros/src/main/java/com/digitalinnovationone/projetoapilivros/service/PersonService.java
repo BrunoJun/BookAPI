@@ -2,6 +2,7 @@ package com.digitalinnovationone.projetoapilivros.service;
 
 import com.digitalinnovationone.projetoapilivros.dto.request.PersonDTO;
 import com.digitalinnovationone.projetoapilivros.entity.Person;
+import com.digitalinnovationone.projetoapilivros.mapper.PersonMapper;
 import com.digitalinnovationone.projetoapilivros.repository.PersonRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ public class PersonService {
     
     private PersonRepository personRepository;
 
+    private final PersonMapper personMapper = PersonMapper.INSTANCE;
+
     @Autowired //Injeta apenas o personRepository
     public PersonService(PersonRepository personRepository){
 
@@ -20,13 +23,9 @@ public class PersonService {
 
     public String createPerson(PersonDTO personDTO){
 
-        Person personToSave = Person.builder()
-        .firstName(personDTO.getFirstName())
-        .lastName(personDTO.getLastName())
-        .cpf(personDTO.getCpf())
-        .build();
+    Person personToSave = personMapper.toModel(personDTO);
 
-        // personRepository.save(personDTO);
+        personRepository.save(personToSave);
         return "Pessoa adicionada!";
     }
 }
