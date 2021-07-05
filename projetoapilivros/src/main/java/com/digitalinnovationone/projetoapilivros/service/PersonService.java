@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import com.digitalinnovationone.projetoapilivros.dto.request.PersonDTO;
 import com.digitalinnovationone.projetoapilivros.entity.Person;
+import com.digitalinnovationone.projetoapilivros.exception.PersonNotFoundException;
 import com.digitalinnovationone.projetoapilivros.mapper.PersonMapper;
 import com.digitalinnovationone.projetoapilivros.repository.PersonRepository;
 
@@ -41,5 +42,11 @@ public class PersonService {
         .collect(Collectors.toList());
     }
 
+    public PersonDTO findById(Long id) throws PersonNotFoundException{
 
+        Person person = personRepository.findById(id)
+        .orElseThrow(() -> new PersonNotFoundException(id)); 
+
+        return personMapper.toDTO(person);
+    }
 }
