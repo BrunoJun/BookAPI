@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.digitalinnovationone.projetoapilivros.dto.request.PersonDTO;
+import com.digitalinnovationone.projetoapilivros.dto.response.MessageResponseDTO;
 import com.digitalinnovationone.projetoapilivros.entity.Person;
 import com.digitalinnovationone.projetoapilivros.exception.PersonNotFoundException;
 import com.digitalinnovationone.projetoapilivros.mapper.PersonMapper;
@@ -25,17 +26,13 @@ public class PersonService {
         this.personRepository = personRepository;
     }
 
+
     public String createPerson(PersonDTO personDTO){
 
     Person personToSave = personMapper.toModel(personDTO);
 
         personRepository.save(personToSave);
         return "Pessoa adicionada!";
-    }
-
-    private Person verifyIfExists(Long id) throws PersonNotFoundException{
-        return personRepository.findById(id)
-        .orElseThrow(() -> new PersonNotFoundException(id));
     }
 
     public List<PersonDTO> listAll(){
@@ -59,5 +56,19 @@ public class PersonService {
         verifyIfExists(id);
 
         personRepository.deleteById(id);
+    }
+
+    public MessageResponseDTO updateById(Long id, PersonDTO personDTO) throws PersonNotFoundException{ 
+        verifyIfExists(id);
+
+        Person personToUpdate = personMapper.toModel(personDTO);
+        Person updatePerson = personRepository.save(personToUpdate);
+        
+        return MessageResponseDTO.builder().message("Pessoa atualizada - Id: " + updatePerson.getId()).build();
+    }
+       
+    private Person verifyIfExists(Long id) throws PersonNotFoundException{
+        return personRepository.findById(id)
+        .orElseThrow(() -> new PersonNotFoundException(id));
     }
 }
