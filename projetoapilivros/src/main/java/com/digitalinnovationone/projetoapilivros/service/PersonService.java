@@ -1,5 +1,8 @@
 package com.digitalinnovationone.projetoapilivros.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.digitalinnovationone.projetoapilivros.dto.request.PersonDTO;
 import com.digitalinnovationone.projetoapilivros.entity.Person;
 import com.digitalinnovationone.projetoapilivros.mapper.PersonMapper;
@@ -28,4 +31,15 @@ public class PersonService {
         personRepository.save(personToSave);
         return "Pessoa adicionada!";
     }
+
+    public List<PersonDTO> listAll(){
+
+        List<Person> allPeople = personRepository.findAll();
+
+        return allPeople.stream()
+        .map(personMapper::toDTO)
+        .collect(Collectors.toList());
+    }
+
+
 }
