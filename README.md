@@ -21,6 +21,10 @@ Este projeto foi elaborado durante o bootcamp GFT START #2 JAVA, promovido pela 
 * Java 16.0.1
 * Visual Studio Code
 
+## Licença
+
+Este projeto utiliza a linceça MIT License. Para mais informações acesse <a href="https://github.com/BrunoJun/BookAPI/blob/82ac12b1b5858964b970e321b0a4f7eb3eab4135/LICENSE">LICENSE</a>.
+
 ## Status
 
 👷 **Em andamento** 👷
