@@ -32,6 +32,9 @@ public class PersonDTO {
     @Size(min = 14)
     private String cpf;
 
+    @NotEmpty
+    private Integer quantityBooks;
+
     @Valid
     @NotEmpty
     private List<BookDTO> books;

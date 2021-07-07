@@ -62,6 +62,16 @@ public class PersonService {
         
         return MessageResponseDTO.builder().message("Pessoa atualizada - Id: " + updatePerson.getId()).build();
     }
+
+    public void increment(Long id, int quantityBooks) throws PersonNotFoundException{
+        Person personBeforeIncrement = verifyIfExists(id);
+
+        if (personBeforeIncrement.getQuantityBooks() < quantityBooks ||personBeforeIncrement.getQuantityBooks() > quantityBooks){
+
+            personBeforeIncrement.setQuantityBooks(quantityBooks);
+            personRepository.save(personBeforeIncrement);
+        }
+    }
        
     private Person verifyIfExists(Long id) throws PersonNotFoundException{
         return personRepository.findById(id)

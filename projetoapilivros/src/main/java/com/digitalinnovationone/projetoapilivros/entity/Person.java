@@ -36,6 +36,9 @@ public class Person {
     @Column(nullable = false, unique = true)
     private String cpf;
 
+    @Column(nullable = false)
+    private Integer quantityBooks;
+
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private List<Book> books;
 }
