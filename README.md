@@ -27,7 +27,7 @@ Este projeto utiliza a linceça MIT License. Para mais informações acesse <a h
 
 ## Status
 
-🚧 **Atualizando** 🚧
+:white_check_mark: **Finalizado** :white_check_mark:
 
 ## Autor
 
