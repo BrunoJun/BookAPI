@@ -23,12 +23,13 @@ public class PersonService {
 
     private final PersonMapper personMapper = PersonMapper.INSTANCE;
 
-    public String createPerson(PersonDTO personDTO){
+    public MessageResponseDTO createPerson(PersonDTO personDTO){
 
-    Person personToSave = personMapper.toModel(personDTO);
+        Person personToSave = personMapper.toModel(personDTO);
 
         personRepository.save(personToSave);
-        return "Pessoa adicionada!";
+        
+        return MessageResponseDTO.builder().message("Pessoa adicionada").build();
     }
 
     public List<PersonDTO> listAll(){
